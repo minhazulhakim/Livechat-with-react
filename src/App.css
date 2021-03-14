@@ -1,38 +1,7 @@
 body {
-  background-color: #282c34;
+  background-color:#212529;
 }
 
-.App {
-  text-align: center;
-  max-width: 728px;
-  margin: 0 auto;
-}
-
-.App header {
-  
-  background-color: #181717;
-  height: 10vh;
-  min-height: 50px;
-  color: white;
-  position: fixed;
-  width: 100%;
-  max-width: 728px;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 99;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-.App section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 100vh;
-  background-color: rgb(40, 37, 53);
-}
 
 main {
   padding: 10px;
@@ -44,58 +13,78 @@ main {
 }
 
 
-
-form {
-  height: 5vh;
-  position: center;
-  bottom: 0;
-  background-color:#282c34;
-  width: 200%;
-  max-width: 1000px;
-  display: flex;
-  font-size: 5rem;
-}
-
-
-form button {
-  
-  width: 15%;
-  background-color: rgb(72, 55, 83);
-}
-
-
-input {
-  margin-left: 50%;
-  line-height: 1;
-  width: 50%;
-  font-size: 1.5rem;
-  background: rgb(58, 58, 58);
-  color: white;
-  outline: none;
-  border: none;
-  padding: 0 10px;
-}
-
-button {
-  background-color: #282c34;
+.signbtn{
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  background-color: #4CAF50; /* Green */
   border: none;
   color: white;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  cursor: pointer;
-  font-size: 1.25rem;
+  font-size: 16px;
+  
+  
+}
+.sinoutbtn{
+  position: fixed;
+    top:0;
+    right:50px;
+  
+}
+.textbox{
+  position: fixed; 
+    bottom:20px;
+    right:0;
+    margin-right:518px;
+    width:30%;
+    height:80px;
+    border-radius: 10px;
+    border:none;
+    background-color:#464b50;
+    color: white;
 }
 
+input[type=text] {
+  width:39%;
+  
 
-p {
-  max-width: 500px;
-  margin-bottom: auto;
-  line-height: 50px;
-  padding: 10px 20px;
-  border-radius: 25px;
-  position: relative;
-  color: white;
-  text-align: center;
+  
+  
+}
+.sendbtn{
+ width:100px;
+ height: 80px;
+ position: fixed;
+ bottom:20px;
+ right: 0;
+margin-right:400px;
+}
+img{
+  border-radius: 20px;
+  
+}
+h6 p{
+  color:red;
+  font-size: 2px;
+}
+#message{
+  color:white;
+}
+#name{
+  
+  color:black;
+}
+#container{
+  border-radius: 20px;
+  width: 40%;
+}
+.timetxt{
+  font-size: 0.3cm;
+}
+#scroll{
+  overflow:hidden;
+  scroll-behavior: smooth;
 }
