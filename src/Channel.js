@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Message from './Message';
 import firebase from 'firebase/app';
+import './App.css';
+import '../src/bootstrap.css';
+import  ReactScrollableFeed from 'react-scrollable-feed';
+
 
 const Channel = ({ user = null, db = null }) => {
     const [messages, setMessages] = useState([]);
@@ -10,10 +14,8 @@ const Channel = ({ user = null, db = null }) => {
 
     useEffect(() => {
         if (db) {
-            const unsubscribe = db
-            .collection('messages')
-            .orderBy('createdAt')
-            .limit(100)
+            //query documents in collection
+            const unsubscribe = db.collection('messages').orderBy('createdAt').limit(100)
             .onSnapshot(querySnapshot => {
                 const data = querySnapshot.docs.map(doc => ({
                     ...doc.data(),
@@ -28,9 +30,10 @@ const Channel = ({ user = null, db = null }) => {
         }
 
     },[db]);
-
+//bind state to form input
     const handleOnChange= e => {
         setNewMessage(e.target.value);
+       
     };
 
     const handleOnSubmit = e => {
@@ -38,6 +41,7 @@ const Channel = ({ user = null, db = null }) => {
 
         if(db) {
             db.collection('messages').add({
+                //create new document in firestore
                 text: newMessage,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                 uid,
@@ -49,22 +53,24 @@ const Channel = ({ user = null, db = null }) => {
     
     return (
         <>
-        <ul>
+        
+        <ul id="scroll" style={{overflowY:'scroll', height: '650px'}}>
+            <ReactScrollableFeed>
             {messages.map(message =>(
                 <li key={message.id}>
                 <Message {...message}/>
                 </li>
             ))}
-
+           </ReactScrollableFeed>
         </ul>
+        
         <form onSubmit = {handleOnSubmit}>
-                <input
-                    type = "text"
-                    value ={newMessage}
-                    onChange={handleOnChange}
-                    placeholder="Type your message here..."
-                    />
-                <button type="submit" disabled={!newMessage}>Send</button>
+
+            <div >
+                <input  type = "text" class="textbox"  value ={newMessage} onChange={handleOnChange}   placeholder="Type your message here..." />
+                <button type="submit" class="btn btn-success sendbtn" disabled={!newMessage}>Send</button>
+            </div>
+                
         </form>
         </>
     );

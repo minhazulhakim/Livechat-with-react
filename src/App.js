@@ -5,6 +5,7 @@ import './App.css';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
+import '../src/bootstrap.css';
 
 
 
@@ -20,7 +21,7 @@ firebase.initializeApp(
 )
 
 const auth = firebase.auth();
-const db = firebase.firestore();
+const db = firebase.firestore();//database connection
 
 
 function App() {
@@ -60,7 +61,7 @@ function App() {
     }
   };
 
-  const signOut = async() => {
+  const signOut  = async() => {
     try{
       await firebase.auth().signOut();
     }
@@ -70,17 +71,19 @@ function App() {
   };
 
   if (initializing) return "Loading...";
-
+ 
   return (
     <div >
       {user ? (
         <>
-        <Button onClick={signOut}>Sign out</Button>
+        <div class="sinoutbtn"><button class="btn btn-primary btn-lg" onClick={signOut}>Sign out</button></div>
         <Channel user={user} db={db}/>
         </>
       )  : (
 
-        <button onClick= {signInWithGoogle}>Sign in with Google</button>
+       
+          <button class="signbtn"  onClick= {signInWithGoogle}>Sign in with Google</button>
+          
 
       )}
         
@@ -88,5 +91,9 @@ function App() {
     </div>
   );
 }
+<script>
+let btnclear=document.querySelector('button');
 
+
+</script>
 export default App;

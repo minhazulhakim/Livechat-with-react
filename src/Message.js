@@ -1,5 +1,7 @@
 import React from 'react';
 import { formatRelative } from 'date-fns';
+import './App.css';
+import '../src/bootstrap.css';
 
 const Message = ({
     createdAt = null,
@@ -7,17 +9,34 @@ const Message = ({
     displayName = '',
     photoURL = '',
 }) => {
-    return <div>
+    return <div class="container bg-secondary" id="container">
+        <div class="row mb-3">
+            
+        <div class="col-6 ">  
+        <p>
+        {displayName ?  <p ><span class="col-1" >{displayName}</span></p> : null}
+        </p>
         {photoURL ? (
-            <img src ={photoURL} alt="Avatar" width={45} height={45}/>
+            <img class="mb-4 ml-4" src ={photoURL} alt="Avatar" width={45} height={45}/>
+            
         ) : null }
-        {displayName ? <p>{displayName}</p> : null}
+        </div>
+        
+        <div class="col-6">
+        <div>
         {createdAt?.seconds ? (
-            <span>
+            <p class="timetxt">
                 {formatRelative(new Date(createdAt.seconds * 1000), new Date())}
-            </span>
+            </p>
         ): null }
-        <p>{text}</p>
+        </div>
+
+        <p id="message">{text}</p>
+        </div>
+        
+        
+        
+        </div>
     </div>
 };
 
